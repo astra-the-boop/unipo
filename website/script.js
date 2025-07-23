@@ -163,7 +163,72 @@ function hideLoadingScreen() {
       loadingScreen.style.display = "none";
       // Enable body scrolling
       document.body.style.overflow = "auto";
+
+      // Check for mobile device and show notice if needed
+      checkAndShowMobileNotice();
     }, 800);
+  }
+}
+
+// Mobile Detection and Notice Functionality
+function isMobileDevice() {
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Check for mobile user agents
+  const mobileRegex =
+    /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i;
+
+  // Also check screen size for additional mobile detection
+  const isSmallScreen = window.innerWidth <= 768;
+
+  // Check for touch capability
+  const hasTouchScreen =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  return mobileRegex.test(userAgent) || (isSmallScreen && hasTouchScreen);
+}
+
+function checkAndShowMobileNotice() {
+  if (isMobileDevice()) {
+    showMobileNotice();
+  }
+}
+
+function showMobileNotice() {
+  const mobileNotice = document.getElementById("mobile-notice");
+  const continueBtn = document.getElementById("mobile-continue-btn");
+
+  if (mobileNotice) {
+    // Show the mobile notice
+    mobileNotice.classList.remove("hidden");
+
+    // Prevent body scrolling while notice is shown
+    document.body.style.overflow = "hidden";
+
+    // Show continue button after 2 seconds
+    setTimeout(() => {
+      if (continueBtn) {
+        continueBtn.classList.remove("hidden");
+      }
+    }, 2000);
+
+    // Add click handler for continue button
+    if (continueBtn) {
+      continueBtn.addEventListener("click", hideMobileNotice);
+    }
+  }
+}
+
+function hideMobileNotice() {
+  const mobileNotice = document.getElementById("mobile-notice");
+
+  if (mobileNotice) {
+    mobileNotice.classList.add("hidden");
+
+    // Re-enable body scrolling
+    setTimeout(() => {
+      document.body.style.overflow = "auto";
+    }, 500);
   }
 }
 
