@@ -1,3 +1,132 @@
+// Loading Screen Functionality
+let loadingProgress = 0;
+let assetsLoaded = 0;
+let totalAssets = 0;
+const progressFill = document.getElementById("progress-fill");
+const progressPercentage = document.getElementById("progress-percentage");
+const loadingScreen = document.getElementById("loading-screen");
+
+// Start loading animation and asset tracking
+document.addEventListener("DOMContentLoaded", function () {
+  trackAssetLoading();
+  startLoadingAnimation();
+});
+
+function trackAssetLoading() {
+  // Count total assets to load
+  const images = document.querySelectorAll("img");
+  const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+  const scripts = document.querySelectorAll("script[src]");
+
+  totalAssets = images.length + stylesheets.length + scripts.length + 3; // +3 for fonts
+
+  // Track image loading
+  images.forEach((img) => {
+    if (img.complete) {
+      incrementProgress();
+    } else {
+      img.addEventListener("load", incrementProgress);
+      img.addEventListener("error", incrementProgress);
+    }
+  });
+
+  // Track stylesheet loading
+  stylesheets.forEach((link) => {
+    if (link.sheet) {
+      incrementProgress();
+    } else {
+      link.addEventListener("load", incrementProgress);
+      link.addEventListener("error", incrementProgress);
+    }
+  });
+
+  // Track script loading
+  scripts.forEach((script) => {
+    script.addEventListener("load", incrementProgress);
+    script.addEventListener("error", incrementProgress);
+  });
+
+  // Track font loading
+  if (document.fonts) {
+    document.fonts.ready.then(() => {
+      incrementProgress(); // Comic Neue
+      incrementProgress(); // Fredoka One
+      incrementProgress(); // Font Awesome
+    });
+  } else {
+    // Fallback for older browsers
+    setTimeout(() => {
+      incrementProgress();
+      incrementProgress();
+      incrementProgress();
+    }, 1000);
+  }
+
+  // Fallback: ensure loading completes even if some assets fail
+  setTimeout(() => {
+    if (loadingProgress < 100) {
+      loadingProgress = 100;
+      updateProgressBar(100);
+      setTimeout(hideLoadingScreen, 500);
+    }
+  }, 1000); // 1 second maximum loading time
+}
+
+function incrementProgress() {
+  assetsLoaded++;
+  const realProgress = (assetsLoaded / totalAssets) * 100;
+  loadingProgress = Math.max(loadingProgress, realProgress);
+
+  if (loadingProgress >= 100) {
+    setTimeout(hideLoadingScreen, 500);
+  }
+}
+
+function startLoadingAnimation() {
+  const loadingInterval = setInterval(() => {
+    // Smooth progress animation that catches up to real progress
+    const targetProgress = Math.min(loadingProgress, 100);
+    const currentProgress = progressFill
+      ? parseFloat(progressFill.style.width) || 0
+      : 0;
+
+    if (currentProgress < targetProgress) {
+      const increment = Math.min(
+        (targetProgress - currentProgress) * 0.1 + 1,
+        5
+      );
+      const newProgress = Math.min(currentProgress + increment, targetProgress);
+      updateProgressBar(newProgress);
+
+      if (newProgress >= 100) {
+        clearInterval(loadingInterval);
+      }
+    }
+  }, 50); // Update every 50ms for smooth animation
+}
+
+function updateProgressBar(progress) {
+  if (progressFill && progressPercentage) {
+    progressFill.style.width = progress + "%";
+    progressPercentage.textContent = Math.round(progress) + "%";
+  }
+}
+
+function hideLoadingScreen() {
+  if (loadingScreen) {
+    loadingScreen.classList.add("fade-out");
+    // Remove the loading screen from DOM after animation completes
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+      // Enable body scrolling
+      document.body.style.overflow = "auto";
+    }, 800);
+  }
+}
+
+// Prevent scrolling while loading
+document.body.style.overflow = "hidden";
+
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize all functionality
