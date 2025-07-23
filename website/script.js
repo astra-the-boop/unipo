@@ -6,11 +6,54 @@ const progressFill = document.getElementById("progress-fill");
 const progressPercentage = document.getElementById("progress-percentage");
 const loadingScreen = document.getElementById("loading-screen");
 
+// Check if coming from welcome page for seamless transition
+const urlParams = new URLSearchParams(window.location.search);
+const isComingFromWelcome =
+  urlParams.get("from") === "welcome" ||
+  (document.referrer.includes(window.location.origin) &&
+    !document.referrer.includes("/website/"));
+
 // Start loading animation and asset tracking
 document.addEventListener("DOMContentLoaded", function () {
-  trackAssetLoading();
-  startLoadingAnimation();
+  // If coming from welcome page, show a faster, more seamless loading
+  if (isComingFromWelcome) {
+    startSeamlessTransition();
+  } else {
+    trackAssetLoading();
+    startLoadingAnimation();
+  }
 });
+
+function startSeamlessTransition() {
+  // Add smooth fade-in classes for seamless transition
+  const loadingContent = document.querySelector(".loading-content");
+  if (loadingContent) {
+    loadingContent.classList.add("from-welcome");
+  }
+
+  // Much faster loading for seamless transition
+  totalAssets = 5; // Reduced for faster loading
+
+  // Quick progress animation with slight delay to allow fade-in
+  setTimeout(() => {
+    const quickInterval = setInterval(() => {
+      loadingProgress += 25;
+      updateProgressBar(loadingProgress);
+
+      if (loadingProgress >= 100) {
+        clearInterval(quickInterval);
+        setTimeout(() => {
+          hideLoadingScreen();
+          // Clean up URL parameter after transition
+          if (urlParams.get("from") === "welcome") {
+            const newUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, newUrl);
+          }
+        }, 600); // Slightly longer delay to enjoy the smooth transition
+      }
+    }, 200); // Slightly slower for better visual effect
+  }, 100); // Small delay to allow initial fade-in
+}
 
 function trackAssetLoading() {
   // Count total assets to load
