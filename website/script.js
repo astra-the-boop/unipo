@@ -773,3 +773,45 @@ explosionStyle.textContent = `
     }
 `;
 document.head.appendChild(explosionStyle);
+
+// Sticky Header Functionality
+function initStickyHeader() {
+  const header = document.querySelector(".header");
+  const banner = document.querySelector(".hack-club-banner");
+  let lastScrollTop = 0;
+  let ticking = false;
+
+  function updateHeader() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const bannerHeight = banner ? banner.offsetHeight : 50;
+
+    // Add scrolled class when scrolled past the banner
+    if (scrollTop > bannerHeight) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+
+    lastScrollTop = scrollTop;
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }
+
+  // Listen for scroll events
+  window.addEventListener("scroll", requestTick, { passive: true });
+
+  // Initial check
+  updateHeader();
+}
+
+// Initialize sticky header when DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // Small delay to ensure all elements are rendered
+  setTimeout(initStickyHeader, 100);
+});

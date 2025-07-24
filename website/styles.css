@@ -394,6 +394,14 @@ body {
   backdrop-filter: blur(20px);
   border-bottom: 3px solid var(--primary-color);
   box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.scrolled {
+  top: 0;
+  background: rgba(26, 0, 51, 0.98);
+  backdrop-filter: blur(25px);
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.4);
 }
 
 .nav {
@@ -978,6 +986,10 @@ body {
 
   .nav-links {
     gap: 1rem;
+  }
+
+  .header.scrolled .nav {
+    padding: 0.75rem 1rem;
   }
 
   .hero {
