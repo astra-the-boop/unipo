@@ -200,15 +200,15 @@ function showMobileNotice() {
 
   if (mobileNotice) {
     // Show the mobile notice
-    mobileNotice.classList.remove("hidden");
+    mobileNotice.classList.remove("show");
 
     // Prevent body scrolling while notice is shown
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "show";
 
     // Show continue button after 2 seconds
     setTimeout(() => {
       if (continueBtn) {
-        continueBtn.classList.remove("hidden");
+        continueBtn.classList.remove("show");
       }
     }, 500);
 
@@ -814,4 +814,106 @@ function initStickyHeader() {
 document.addEventListener("DOMContentLoaded", function () {
   // Small delay to ensure all elements are rendered
   setTimeout(initStickyHeader, 100);
+});
+
+// Mobile Navigation Functionality
+document.addEventListener("DOMContentLoaded", function () {
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
+  const mobileNavOverlay = document.getElementById("mobile-nav-overlay");
+  const mobileNavClose = document.getElementById("mobile-nav-close");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  function openMobileNav() {
+    mobileNavDrawer.classList.add("active");
+    mobileNavOverlay.classList.add("active");
+    mobileMenuBtn.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileNav() {
+    mobileNavDrawer.classList.remove("active");
+    mobileNavOverlay.classList.remove("active");
+    mobileMenuBtn.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  // Event listeners for mobile navigation
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener("click", openMobileNav);
+  }
+
+  if (mobileNavClose) {
+    mobileNavClose.addEventListener("click", closeMobileNav);
+  }
+
+  if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener("click", closeMobileNav);
+  }
+
+  // Close mobile nav when clicking on links
+  mobileNavLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      setTimeout(closeMobileNav, 300);
+    });
+  });
+
+  // Close mobile nav on escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && mobileNavDrawer.classList.contains("active")) {
+      closeMobileNav();
+    }
+  });
+
+  // Handle orientation change
+  window.addEventListener("orientationchange", function () {
+    setTimeout(() => {
+      if (
+        window.innerWidth > 768 &&
+        mobileNavDrawer.classList.contains("active")
+      ) {
+        closeMobileNav();
+      }
+    }, 100);
+  });
+
+  // Touch gesture support for mobile nav
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const touchThreshold = 50;
+
+  document.addEventListener("touchstart", function (e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+
+  document.addEventListener("touchend", function (e) {
+    if (!touchStartX || !touchStartY) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = Math.abs(touchStartY - touchEndY);
+
+    // Swipe right to left to open nav (from right edge)
+    if (
+      touchStartX > window.innerWidth - 50 &&
+      deltaX < -touchThreshold &&
+      deltaY < 100
+    ) {
+      openMobileNav();
+    }
+
+    // Swipe left to right to close nav
+    if (
+      mobileNavDrawer.classList.contains("active") &&
+      deltaX > touchThreshold &&
+      deltaY < 100
+    ) {
+      closeMobileNav();
+    }
+
+    touchStartX = 0;
+    touchStartY = 0;
+  });
 });

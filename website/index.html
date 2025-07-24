@@ -69,12 +69,65 @@
 
     <div class="background-animation"></div>
 
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+    <nav id="mobile-nav-drawer" class="mobile-nav-drawer">
+      <div class="mobile-nav-header">
+        <div class="mobile-nav-brand">
+          <i class="fas fa-code-branch bouncy"></i>
+          <span>🎨 Unipo 🚀</span>
+        </div>
+        <button id="mobile-nav-close" class="mobile-nav-close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link">
+          <i class="fas fa-info-circle"></i>
+          <span>About</span>
+        </a>
+        <a href="#contribute" class="mobile-nav-link">
+          <i class="fas fa-plus"></i>
+          <span>Contribute</span>
+        </a>
+        <a
+          href="https://github.com/astra-the-boop/unipo"
+          target="_blank"
+          class="mobile-nav-link"
+        >
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        <div class="mobile-nav-divider"></div>
+        <div class="mobile-nav-social">
+          <a
+            href="https://hackclub.com"
+            target="_blank"
+            class="mobile-social-link hack-club-link"
+          >
+            <img
+              src="assets/hc-flag-orpheus-left.png"
+              alt="Hack Club"
+              class="hack-club-flag-mobile"
+            />
+          </a>
+        </div>
+      </div>
+    </nav>
+
     <header class="header">
       <nav class="nav">
         <div class="nav-brand">
           <i class="fas fa-code-branch bouncy"></i>
           <span>🎨 Unipo 🚀</span>
         </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <!-- Desktop Navigation -->
         <div class="nav-links">
           <a href="#about" class="nav-link">About</a>
           <a href="#contribute" class="nav-link">Contribute</a>
@@ -84,6 +137,17 @@
             class="nav-link"
           >
             <i class="fab fa-github"></i> GitHub
+          </a>
+          <a
+            href="https://hackclub.com"
+            target="_blank"
+            class="nav-link hack-club-link"
+          >
+            <img
+              src="assets/hc-flag-orpheus-left.png"
+              alt="Hack Club"
+              class="hack-club-flag"
+            />
           </a>
         </div>
       </nav>
@@ -106,7 +170,7 @@
           <div class="hero-buttons">
             <a href="#contribute" class="btn btn-primary bouncy-btn">
               <i class="fas fa-plus"></i>
-              🚀 Start Contributing! 🚀
+              <span class="btn-text">🚀 Start Contributing! 🚀</span>
             </a>
             <a
               href="https://github.com/astra-the-boop/unipo"
@@ -114,7 +178,7 @@
               class="btn btn-secondary bouncy-btn"
             >
               <i class="fab fa-github"></i>
-              👀 View Secret Repo 👀
+              <span class="btn-text">👀 View Secret Repo 👀</span>
             </a>
           </div>
         </div>
