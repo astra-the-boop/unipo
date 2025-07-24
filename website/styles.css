@@ -452,7 +452,7 @@ body {
 
 /* Hack Club Flag Styles */
 .hack-club-flag {
-  height: 60px;
+  height: 50px;
   width: auto;
   transition: var(--transition);
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
@@ -462,6 +462,7 @@ body {
   transform: translateY(-2px) scale(1.1);
   filter: drop-shadow(0 4px 8px rgba(255, 107, 107, 0.4)) brightness(1.1);
 }
+
 .hack-club-flag-mobile {
   height: 100px;
   width: auto;
