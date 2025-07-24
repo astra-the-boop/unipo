@@ -210,7 +210,7 @@ function showMobileNotice() {
       if (continueBtn) {
         continueBtn.classList.remove("hidden");
       }
-    }, 2000);
+    }, 500);
 
     // Add click handler for continue button
     if (continueBtn) {
