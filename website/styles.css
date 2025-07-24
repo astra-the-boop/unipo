@@ -289,7 +289,6 @@ body {
       rgba(102, 187, 106, 0.1) 0%,
       transparent 50%
     );
-  animation: backgroundShift 15s ease-in-out infinite;
 }
 
 @keyframes backgroundShift {
