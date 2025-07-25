@@ -2,21 +2,21 @@
 
 <div align="center">
   
-[![GitHub contributors](https://img.shields.io/github/contributors/astra-the-boop/unipo?style=for-the-badge&color=brightgreen)](https://github.com/astra-the-boop/unipo/graphs/contributors)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/astra-the-boop/unipo?style=for-the-badge&color=blue)](https://github.com/astra-the-boop/unipo/pulls)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/astra-the-boop/unipo?style=for-the-badge&color=purple)](https://github.com/astra-the-boop/unipo/pulls?q=is%3Apr+is%3Aclosed)
-[![GitHub repo size](https://img.shields.io/github/repo-size/astra-the-boop/unipo?style=for-the-badge&color=orange)](https://github.com/astra-the-boop/unipo)
-[![GitHub last commit](https://img.shields.io/github/last-commit/astra-the-boop/unipo?style=for-the-badge&color=red)](https://github.com/astra-the-boop/unipo/commits)
+[![GitHub contributors](https://img.shields.io/github/contributors/hc-unipo/unipo?style=for-the-badge&color=brightgreen)](https://github.com/hc-unipo/unipo/graphs/contributors)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/hc-unipo/unipo?style=for-the-badge&color=blue)](https://github.com/hc-unipo/unipo/pulls)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/hc-unipo/unipo?style=for-the-badge&color=purple)](https://github.com/hc-unipo/unipo/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub repo size](https://img.shields.io/github/repo-size/hc-unipo/unipo?style=for-the-badge&color=orange)](https://github.com/hc-unipo/unipo)
+[![GitHub last commit](https://img.shields.io/github/last-commit/hc-unipo/unipo?style=for-the-badge&color=red)](https://github.com/hc-unipo/unipo/commits)
 
 </div>
 
 ## 📊 Repository Stats
 
 - **📁 Total Files**: Check the repository tree for current count
-- **🔄 Pull Requests**: ![PRs](https://img.shields.io/github/issues-pr/astra-the-boop/unipo?style=flat-square)
-- **👥 Contributors**: ![Contributors](https://img.shields.io/github/contributors/astra-the-boop/unipo?style=flat-square)
-- **⭐ Stars**: ![Stars](https://img.shields.io/github/stars/astra-the-boop/unipo?style=flat-square)
-- **🍴 Forks**: ![Forks](https://img.shields.io/github/forks/astra-the-boop/unipo?style=flat-square)
+- **🔄 Pull Requests**: ![PRs](https://img.shields.io/github/issues-pr/hc-unipo/unipo?style=flat-square)
+- **👥 Contributors**: ![Contributors](https://img.shields.io/github/contributors/hc-unipo/unipo?style=flat-square)
+- **⭐ Stars**: ![Stars](https://img.shields.io/github/stars/hc-unipo/unipo?style=flat-square)
+- **🍴 Forks**: ![Forks](https://img.shields.io/github/forks/hc-unipo/unipo?style=flat-square)
 
 ## 🚀 Welcome to unipo!
 
@@ -46,7 +46,7 @@ We welcome contributions from everyone! Here's how you can get started:
 
 Thank you to all the wonderful people who have contributed to this project!
 
-[![Contributors](https://contrib.rocks/image?repo=astra-the-boop/unipo)](https://github.com/astra-the-boop/unipo/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=hc-unipo/unipo)](https://github.com/hc-unipo/unipo/graphs/contributors)
 
 ## 📜 License
 
@@ -55,6 +55,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-  <p>Made with ❤️ by the unipo community</p>
+  <p>Made with ❤️ by Hack Club</p>
   <p>⭐ Star this repo if you find it helpful!</p>
 </div>
